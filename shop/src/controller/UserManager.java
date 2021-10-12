@@ -43,6 +43,11 @@ public class UserManager {
 		else if (sel == 2) {}
 	}
 	
+	//관리자 삭제
+	public void delAccount() {
+		
+	}
+	
 	// 로그인
 	public boolean logIn() {
 		System.out.println("ID :");
@@ -62,5 +67,10 @@ public class UserManager {
 	public void logOut() {
 		userlog = -1;
 		System.out.println("==로그아웃==");
+	}
+	
+	//전체 유저프린트
+	public void userPrint() {
+		System.out.println();
 	}
 }

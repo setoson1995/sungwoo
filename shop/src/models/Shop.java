@@ -2,11 +2,13 @@ package models;
 
 import java.util.Scanner;
 
+import controller.ItemManager;
 import controller.UserManager;
 
 public class Shop {
 	Scanner scan = new Scanner(System.in);
 	UserManager um = new UserManager();
+	ItemManager im = new ItemManager();
 	
 	
 	public void mainMenu() {
@@ -80,26 +82,29 @@ public class Shop {
 	void userSetting() {
 		System.out.println("1)전체유저보기\2)추가\3)삭제\4)뒤로가기");
 		int sel = scan.nextInt();
-		if(sel == 1) {}
-		else if(sel == 2) {}
-		else if(sel == 3) {}
-		else if(sel == 4) {}
+		
+		if(sel == 1) {um.userPrint();}
+		else if(sel == 2) {um.join();}
+		else if(sel == 3) {um.delAccount();}
+		else if(sel == 4) {managerMenu();}
 	}
 	void itemSetting() {
 		System.out.println("1)전체아이템보기\2)추가\3)삭제\4)뒤로가기");
 		int sel = scan.nextInt();
-		if(sel == 1) {}
-		else if(sel == 2) {}
-		else if(sel == 3) {}
-		else if(sel == 4) {}
+		
+		if(sel == 1) {im.itemPrint();}
+		else if(sel == 2) {im.addItem();}
+		else if(sel == 3) {im.delItem();}
+		else if(sel == 4) {managerMenu();}
 	}
 	void categorySetting() {
 		System.out.println("1)전체카테고리보기\2)추가\3)삭제\4)뒤로가기");
 		int sel = scan.nextInt();
-		if(sel == 1) {}
-		else if(sel == 2) {}
-		else if(sel == 3) {}
-		else if(sel == 4) {}
+		
+		if(sel == 1) {im.categoryPrint();}
+		else if(sel == 2) {im.addCategory();}
+		else if(sel == 3) {im.delCategory();}
+		else if(sel == 4) {managerMenu();}
 	}
 	
 }
