@@ -11,7 +11,7 @@ public class UserManager {
 	private ArrayList<User> userList = new ArrayList<>();
 	int userlog = -1;
 	
-	
+	// 가입
 	public void join() {
 		System.out.println("New ID :");
 		String id = scan.next();
@@ -35,7 +35,15 @@ public class UserManager {
 		
 	}
 	
+	// 회원탈퇴
+	public void closeAccount() {
+		System.out.println("진짜 탈퇴할꺼? <1)네, 2)아니오>");
+		int sel = scan.nextInt();
+		if(sel == 1) {}
+		else if (sel == 2) {}
+	}
 	
+	// 로그인
 	public boolean logIn() {
 		System.out.println("ID :");
 		String id = scan.next();
@@ -50,5 +58,9 @@ public class UserManager {
 		return false;		
 	}
 	
-	
+	// 로그아웃
+	public void logOut() {
+		userlog = -1;
+		System.out.println("==로그아웃==");
+	}
 }

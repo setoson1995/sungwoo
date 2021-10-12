@@ -23,20 +23,23 @@ public class Shop {
 				}
 			}
 			else if(sel == 99) {managerMenu();}
+			else if(sel == 0) {run = false;}
 		}
 	}
 	
+	// 로그인 후 메뉴
 	void loginMenu() {
 		boolean run = true;
 		while(run) {
-			System.out.println("1)쇼핑\n2)장바구니목록\n3)뒤로가기");
+			System.out.println("1)쇼핑\n2)장바구니목록\n3)탈퇴\n4)로그아웃");
 			int sel = scan.nextInt();
 			if(sel == 1) {shopMenu();}
 			else if(sel == 2) {cartMenu();}
-			else if(sel == 3) {}
+			else if(sel == 3) {um.closeAccount();}
+			else if(sel == 4) {um.logOut();}
 		}
 	}
-	
+	//쇼핑
 	void shopMenu() {
 		boolean run = true;
 		while(run) {
@@ -48,17 +51,21 @@ public class Shop {
 			
 		}
 	}
-	
+	//장바구니
 	void cartMenu() {
 		boolean run = true;
 		while(run) {
-			System.out.println(")결제");
+			System.out.println("1)상품추가\n2)상품빼기\n3)결제\n4)뒤로가기");
 			int sel = scan.nextInt();
 			if(sel == 1) {}
 			else if(sel == 2) {}
+			else if(sel == 3) {}
+			else if(sel == 4) {loginMenu();}
 		}
 	}
 	
+	
+	//관리자 모드
 	void managerMenu() {
 		boolean run = true;
 		while(run) {
@@ -70,15 +77,29 @@ public class Shop {
 			else if(sel == 4) {mainMenu();}
 		}
 	}
-	
 	void userSetting() {
-		
+		System.out.println("1)전체유저보기\2)추가\3)삭제\4)뒤로가기");
+		int sel = scan.nextInt();
+		if(sel == 1) {}
+		else if(sel == 2) {}
+		else if(sel == 3) {}
+		else if(sel == 4) {}
 	}
 	void itemSetting() {
-		
+		System.out.println("1)전체아이템보기\2)추가\3)삭제\4)뒤로가기");
+		int sel = scan.nextInt();
+		if(sel == 1) {}
+		else if(sel == 2) {}
+		else if(sel == 3) {}
+		else if(sel == 4) {}
 	}
 	void categorySetting() {
-		
+		System.out.println("1)전체카테고리보기\2)추가\3)삭제\4)뒤로가기");
+		int sel = scan.nextInt();
+		if(sel == 1) {}
+		else if(sel == 2) {}
+		else if(sel == 3) {}
+		else if(sel == 4) {}
 	}
 	
 }
