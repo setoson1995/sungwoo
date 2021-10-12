@@ -1,5 +1,8 @@
 package controller;
 
-public class ItemManager {
+import java.util.Scanner;
 
+public class ItemManager {
+	Scanner scan = new Scanner(System.in);
+	
 }
