@@ -5,6 +5,7 @@ import models.Bank;
 public class BankManager {
 	
 	private UserManager um = UserManager.instance;
+	private AccountManager am = AccountManager.instance;
 	
 	public static BankManager instance = new BankManager();
 	private BankManager() {}
@@ -15,7 +16,7 @@ public class BankManager {
 		while(isRun) {
 			System.out.println(Bank.getName() + "ATM");
 			printMenu();
-			selectMenu();
+			isRun = selectMenu();
 		}
 	}
 	
@@ -23,11 +24,11 @@ public class BankManager {
 		if(Bank.log == -1) {
 			System.out.println("1.로그인\n2.회원가입\n3.종료");
 		}
-		else {System.out.println("1.계좌생성\n2.계좌철회\n3.입금\n4.출금\n5.이체\n6.조회\n7.로그아웃");
+		else {System.out.println("1.입금\n2.출금\n3.이체\n4.조회\n5.계좌개설\n6.계좌철회");
 		}
 	}
 		
-	private void selectMenu() {
+	private boolean selectMenu() {
 		String input = Bank.scan.next();
 		
 		try {
@@ -46,33 +47,24 @@ public class BankManager {
 				}
 				//종료
 				else if(sel == 3) {
-					
+					return false;
 				}
 			}
-			else {
-				
+			else { // 로그인을 했을때에만 선택ㄷ하는 메뉴에 대하여
+				if(sel == 1) {}
+				else if(sel == 2) {}
+				else if(sel == 3) {}
+				else if(sel == 4) {}
+				else if(sel == 5) {
+					am.createAcc();
+				}
+				else if(sel == 6) {}
 			}
 		} catch (Exception e) {
 			System.out.println("입력값을 확인하세요"); // 문자로 입력되면 발생
 		}
 		
-		//로그 바뀐뒤
-		try {
-			int sel = Integer.parseInt(input);
-			
-			if(Bank.log != -1) {
-				if(sel == 1) {}
-				else if(sel == 2) {}
-				else if(sel == 3) {}
-				else if(sel == 4) {}
-				else if(sel == 5) {}
-				else if(sel == 6) {}
-				else if(sel == 6) {}
-			}
-			
-		} catch (Exception e) {
-			System.out.println("입력값을 확인하세요"); // 문자로 입력되면 발생
-		}
+		return true;
 	}
 	
 	

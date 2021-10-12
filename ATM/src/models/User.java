@@ -21,7 +21,16 @@ public class User {
 		return this.id;
 	}
 	
-	public String getpw() {
+	public String getPw() {
 		return this.pw;
 	}
+	
+	public int getUserCode() {
+		return this.userCode;
+	}
+	public String getName() {
+		return this.name;
+	}
+	
+	
 }
