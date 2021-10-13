@@ -3,17 +3,58 @@ package controller;
 import java.util.Scanner;
 import java.util.Vector;
 
+import models.Cart;
+import models.Item;
+
 
 public class ItemManager {
 	Scanner scan = new Scanner(System.in);
 	
-	Vector<> category = new Vector()<>();
-	Vector<> itemList = new Vector()<>();
-	Vector<> cartList = new Vector()<>();
+	
+	Vector<String> category = new Vector<>();
+	Vector<Item> itemList = new Vector<>();
+	Vector<Cart> cartList = new Vector<>();
+	
+	
+	void cartPrint() {
+		for(Cart i : cartList)
+			System.out.println(i);
+	}
+	
+	// 기본 추가된 상품들
+	void init() {
+		category.add("과자");
+		category.add("생선");
+		category.add("육류");
+		category.add("음료수");
+		Item temp = new Item("새우깡", 1000, category.get(0));
+		itemList.add(temp);
+		temp = new Item("고등어", 2000, category.get(1));
+		itemList.add(temp);
+		temp = new Item("칸쵸", 3600, category.get(0));
+		itemList.add(temp);
+		temp = new Item("소고기", 6500, category.get(2));
+		itemList.add(temp);
+		temp = new Item("콜라", 500, category.get(3));
+		itemList.add(temp);
+		temp = new Item("새우", 1800, category.get(1));
+		itemList.add(temp);
+	}
 	
 	// 아이템 추가
 	public void addItem() {
-		// 이기에 카테고리 미리 나열 후
+		// 카테고리 미리 나열 후
+		if(category.size() > 0) {
+			for(int i=0; i<category.size(); i++) {
+				System.out.println("\n");
+				System.out.print("["+i+". ");
+				System.out.print(category);
+				System.out.print("] ");
+			}
+		}	
+		else {
+			System.out.println("===등록된 카테고리가 없음===");
+		}
 		System.out.println("추가 상품 카테고리 :");
 		int category = scan.nextInt();
 		System.out.println("추가 상품 이름 :");
@@ -41,9 +82,12 @@ public class ItemManager {
 	
 	
 	//카테고리 추가
-	public void addCategory() {
-		
-	}
+//	public void addCategory() {
+//		System.out.println("New Category Name :");
+//		String name = scan.next();
+//		boolean check = false;
+//		for(category)
+//	}
 	//카테고리 삭제
 	public void delCategory() {
 		

@@ -3,13 +3,15 @@ package controller;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import models.Shop;
 import models.User;
+
 
 public class UserManager {
 	Scanner scan = new Scanner(System.in);
 	
-	private ArrayList<User> userList = new ArrayList<>();
-	int userlog = -1;
+	public ArrayList<User> userList = new ArrayList<>();
+	public static int userlog = -1;
 	
 	// 가입
 	public void join() {
@@ -55,12 +57,12 @@ public class UserManager {
 		System.out.println("PW :");
 		String pw = scan.next();
 		for(int i=0; i<userList.size(); i++) {
-			if(id.equals(userList.get(i)) && pw.equals(userList.get(i))) {
+			if(id.equals(userList.get(i).getId()) && pw.equals(userList.get(i).getPw())) {
 				userlog = i;
 				break;
 			}
 		}
-		return false;		
+		return false;	
 	}
 	
 	// 로그아웃
@@ -71,6 +73,7 @@ public class UserManager {
 	
 	//전체 유저프린트
 	public void userPrint() {
-		System.out.println();
+		for(User i : userList)
+			System.out.println(i);
 	}
 }
