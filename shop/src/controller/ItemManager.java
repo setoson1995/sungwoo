@@ -88,6 +88,22 @@ public class ItemManager {
 		}
 	}
 	
+	//로그인된 카트에 상품담기
+	public void pickitem(String userID, int cas, int its) {
+		int n=0;
+		Cart temp = new Cart();
+		temp.userId = userID;
+		for(int i=0; i<itemList.size(); i++) {
+			if(category.get(cas).equals(itemList.get(i).category)) {
+				if(its == n) {
+					temp.itemName = itemList.get(i).name;
+				}
+				n++;
+			}
+		}
+		cartList.add(temp);
+	}
+	
 	
 	//카테고리 추가
 //	public void addCategory() {
@@ -106,4 +122,20 @@ public class ItemManager {
 			System.out.println("["+i+"] "+category.get(i));
 		}
 	}	
+	
+	// 카트넣은 상품보기
+	public void lookCart() {
+
+			
+	}
+	//카트상품 수량추가
+	public void growItemN() {
+
+		
+	}
+	//카트상품 빼기
+	public void delCartItem() {
+
+		
+	}
 }

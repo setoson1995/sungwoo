@@ -59,7 +59,7 @@ public class Shop {
 			System.out.println("[상품]");
 			im.itemPrint(cas);
 			int its = scan.nextInt();
-//			im.
+			im.pickitem(um.userList.get(um.userlog).id, cas, its);
 			
 		}
 	}
@@ -67,13 +67,20 @@ public class Shop {
 	void cartMenu() {
 		boolean run = true;
 		while(run) {
-			System.out.println("1)상품추가\n2)상품빼기\n3)결제\n4)뒤로가기");
+			System.out.println("==List==");
+			im.lookCart();
+			System.out.println("1)추가된상품 수량추가\n2)상품빼기\n3)결제\n4)뒤로가기");
 			int sel = scan.nextInt();
-			if(sel == 1) {}
-			else if(sel == 2) {}
-			else if(sel == 3) {}
+			if(sel == 1) {im.growItemN();}
+			else if(sel == 2) {im.delCartItem();}
+			else if(sel == 3) {pay();}
 			else if(sel == 4) {loginMenu();}
 		}
+	}
+	
+	//결제
+	void pay() {
+		
 	}
 	
 	

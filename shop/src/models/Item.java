@@ -2,8 +2,8 @@ package models;
 
 public class Item {
 
-	String name;
-	int price;
+	public String name;
+	public int price;
 	public String category;
 	
 	public Item(String name, int price, String category){
