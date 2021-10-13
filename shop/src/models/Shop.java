@@ -53,10 +53,13 @@ public class Shop {
 		boolean run = true;
 		while(run) {
 			im.categoryPrint();
-			System.out.println("1)카테고리\n-1)뒤로가기");
-			int sel = scan.nextInt();
-			if(sel == -1) {break;}
-			else if(sel == -1) {}
+			System.out.println("-1)뒤로가기");
+			int cas = scan.nextInt();
+			if(cas == -1) {break;}
+			System.out.println("[상품]");
+			im.itemPrint(cas);
+			int its = scan.nextInt();
+//			im.
 			
 		}
 	}

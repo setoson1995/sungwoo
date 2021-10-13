@@ -4,7 +4,7 @@ public class Item {
 
 	String name;
 	int price;
-	String category;
+	public String category;
 	
 	public Item(String name, int price, String category){
 		name = name;
@@ -12,7 +12,7 @@ public class Item {
 		category = category;
 	}
 	
-	void print() {
+	public void print() {
 		System.out.println("["+category+"] "+" ["+name+"] "+" ["+price+"]");
 	}
 }

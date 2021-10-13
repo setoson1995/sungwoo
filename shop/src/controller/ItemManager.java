@@ -17,8 +17,9 @@ public class ItemManager {
 	
 	
 	void cartPrint() {
-		for(Cart i : cartList)
-			System.out.println(i);
+		init();
+//		for(Cart i : cartList)
+//			System.out.println(i);
 	}
 	
 	// 기본 추가된 상품들
@@ -76,8 +77,15 @@ public class ItemManager {
 	}
 	
 	// 아이템 프린트
-	public void itemPrint() {
-		System.out.println();
+	public void itemPrint(int cas) {
+		int n = 0;
+		for(int i=0; i<itemList.size(); i++) {
+			if(category.get(cas).equals(itemList.get(i).category)) {
+				System.out.println(n+")");
+				itemList.get(i).print();
+				n++;
+			}
+		}
 	}
 	
 	
@@ -94,6 +102,8 @@ public class ItemManager {
 	}
 	//카테고리 프린트
 	public void categoryPrint() {
-		
+		for(int i=0; i<category.size(); i++) {
+			System.out.println("["+i+"] "+category.get(i));
+		}
 	}	
 }
