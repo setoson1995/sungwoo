@@ -15,8 +15,11 @@ public class Shop {
 		boolean run = true;
 		while(run) {
 			System.out.println("log: "+um.userlog);
-			for(User i : um.userList)
-				System.out.println(i);
+			for(int i=0; i<um.userList.size(); i++) {
+				System.out.print("["+i+"] "+um.userList.get(i).getId());
+				System.out.print(" / "+um.userList.get(i).getPw());
+				System.out.println();
+			}
 			System.out.println("===SHOP===");
 			System.out.println("1)가입\n2)로그인" + "\n99)관리자\n0)종료");
 			int sel = scan.nextInt();
@@ -59,7 +62,7 @@ public class Shop {
 			System.out.println("[상품]");
 			im.itemPrint(cas);
 			int its = scan.nextInt();
-			im.pickitem(um.userList.get(um.userlog).id, cas, its);
+//			im.pickitem(um.userList.get(um.userlog).id, cas, its);
 			
 		}
 	}
@@ -90,6 +93,7 @@ public class Shop {
 		while(run) {
 			System.out.println("1)유저관리\n2)아이템관리\n3)카테고리관리/n4)뒤로가기");
 			int sel = scan.nextInt();
+		
 			if(sel == 1) {userSetting();}
 			else if(sel == 2) {itemSetting();}
 			else if(sel == 3) {categorySetting();}
@@ -97,31 +101,40 @@ public class Shop {
 		}
 	}
 	void userSetting() {
-		System.out.println("1)전체유저보기\n2)추가\n3)삭제\n4)뒤로가기");
-		int sel = scan.nextInt();
-		
-		if(sel == 1) {System.out.println(um.userList);}
-		else if(sel == 2) {um.join();}
-		else if(sel == 3) {um.delAccount();}
-		else if(sel == 4) {managerMenu();}
+		boolean run = true;
+		while(run) {
+			System.out.println("1)전체유저보기\n2)추가\n3)삭제\n4)뒤로가기");
+			int sel = scan.nextInt();
+			
+			if(sel == 1) {System.out.println(um.userList);}
+			else if(sel == 2) {um.join();}
+			else if(sel == 3) {um.delAccount();}
+			else if(sel == 4) {managerMenu();}
+		}	
 	}
 	void itemSetting() {
-		System.out.println("1)전체아이템보기\n2)추가\n3)삭제\n4)뒤로가기");
-		int sel = scan.nextInt();
-		
-		if(sel == 1) {um.userPrint();}
-		else if(sel == 2) {im.addItem();}
-		else if(sel == 3) {im.delItem();}
-		else if(sel == 4) {managerMenu();}
+		boolean run = true;
+		while(run) {
+			System.out.println("1)전체아이템보기\n2)추가\n3)삭제\n4)뒤로가기");
+			int sel = scan.nextInt();
+			
+			if(sel == 1) {um.userPrint();}
+			else if(sel == 2) {im.addItem();}
+			else if(sel == 3) {im.delItem();}
+			else if(sel == 4) {managerMenu();}
+		}	
 	}
 	void categorySetting() {
-		System.out.println("1)전체카테고리보기\n2)추가\n3)삭제\n4)뒤로가기");
-		int sel = scan.nextInt();
-		
-		if(sel == 1) {im.categoryPrint();}
-//		else if(sel == 2) {im.addCategory();}
-		else if(sel == 3) {im.delCategory();}
-		else if(sel == 4) {managerMenu();}
+		boolean run = true;
+		while(run) {
+			System.out.println("1)전체카테고리보기\n2)추가\n3)삭제\n4)뒤로가기");
+			int sel = scan.nextInt();
+			
+			if(sel == 1) {im.categoryPrint();}
+			else if(sel == 2) {im.addCategory();}
+			else if(sel == 3) {im.delCategory();}
+			else if(sel == 4) {managerMenu();}
+		}	
 	}
 	
 }

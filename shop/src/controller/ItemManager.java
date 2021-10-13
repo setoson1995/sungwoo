@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import models.Cart;
+import models.Category;
 import models.Item;
 
 
@@ -11,7 +12,8 @@ public class ItemManager {
 	Scanner scan = new Scanner(System.in);
 	
 	
-	Vector<String> category = new Vector<>();
+	
+	public Vector<Category> category = new Vector<>();
 	Vector<Item> itemList = new Vector<>();
 	Vector<Cart> cartList = new Vector<>();
 	
@@ -24,22 +26,27 @@ public class ItemManager {
 	
 	// 기본 추가된 상품들
 	void init() {
-		category.add("과자");
-		category.add("생선");
-		category.add("육류");
-		category.add("음료수");
-		Item temp = new Item("새우깡", 1000, category.get(0));
-		itemList.add(temp);
-		temp = new Item("고등어", 2000, category.get(1));
-		itemList.add(temp);
-		temp = new Item("칸쵸", 3600, category.get(0));
-		itemList.add(temp);
-		temp = new Item("소고기", 6500, category.get(2));
-		itemList.add(temp);
-		temp = new Item("콜라", 500, category.get(3));
-		itemList.add(temp);
-		temp = new Item("새우", 1800, category.get(1));
-		itemList.add(temp);
+		
+		Category category = new Category("과자");
+		this.category.add(category);
+		category = new Category("생선");
+		this.category.add(category);
+		category = new Category("육류");
+		this.category.add(category);
+		category = new Category("음료수");
+		this.category.add(category);
+//		Item temp = new Item("새우깡", 1000, category.get(0));
+//		itemList.add(temp);
+//		temp = new Item("고등어", 2000, category.get(1));
+//		itemList.add(temp);
+//		temp = new Item("칸쵸", 3600, category.get(0));
+//		itemList.add(temp);
+//		temp = new Item("소고기", 6500, category.get(2));
+//		itemList.add(temp);
+//		temp = new Item("콜라", 500, category.get(3));
+//		itemList.add(temp);
+//		temp = new Item("새우", 1800, category.get(1));
+//		itemList.add(temp);
 	}
 	
 	// 아이템 추가
@@ -106,20 +113,35 @@ public class ItemManager {
 	
 	
 	//카테고리 추가
-//	public void addCategory() {
-//		System.out.println("New Category Name :");
-//		String name = scan.next();
-//		boolean check = false;
-//		for(category)
-//	}
+	public void addCategory() {
+		System.out.println("New Category Name :");
+		String name = scan.next();
+		boolean check = false;
+		for(Category category : this.category) {
+			if(name.equals(category.getCategory()))
+				check = true;
+		}
+		if(!check) {
+			Category newcategory = new Category(name);
+			this.category.add(newcategory);
+			System.out.println("==카테고리 생성==");
+		}
+		else {
+			System.out.println("==이미 생성된 카테고리==");
+		}
+	}
 	//카테고리 삭제
 	public void delCategory() {
+		categoryPrint();
+		System.out.println("1~ Delete :");
+		int n = scan.nextInt()-1;
 		
+		category.remove(n);
 	}
 	//카테고리 프린트
 	public void categoryPrint() {
 		for(int i=0; i<category.size(); i++) {
-			System.out.println("["+i+"] "+category.get(i));
+			System.out.println("["+i+"] "+category.get(i).getCategory());
 		}
 	}	
 	
