@@ -55,20 +55,31 @@ public class ItemManager {
 		if(category.size() > 0) {
 			for(int i=0; i<category.size(); i++) {
 				System.out.println("\n");
-				System.out.print("["+i+". ");
-				System.out.print(category);
+				System.out.print("["+i+1+". ");
+				System.out.print(category.get(i).getCategory());
 				System.out.print("] ");
 			}
+			System.out.println("\n추가 상품 카테고리 :");
+			int category = scan.nextInt();
+			System.out.println("추가 상품 이름 :");
+			int name = scan.nextInt();
+			System.out.println("추가 상품 가격 :");
+			int price = scan.nextInt();
+			
+			boolean check  = false;
+			for(Item item : this.itemList) {
+				if(name.equals(item.getName()))
+					check = true;
+			}
+			if(!check) {
+				
+			}
+			
 		}	
 		else {
 			System.out.println("===등록된 카테고리가 없음===");
 		}
-		System.out.println("추가 상품 카테고리 :");
-		int category = scan.nextInt();
-		System.out.println("추가 상품 이름 :");
-		int name = scan.nextInt();
-		System.out.println("추가 상품 가격 :");
-		int price = scan.nextInt();
+
 		
 		
 	}
