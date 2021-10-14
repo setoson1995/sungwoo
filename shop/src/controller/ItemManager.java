@@ -55,18 +55,18 @@ public class ItemManager {
 		if(category.size() > 0) {
 			for(int i=0; i<category.size(); i++) {
 				System.out.println("\n");
-				System.out.print("["+i+1+". ");
+				System.out.print("["+i+". ");
 				System.out.print(category.get(i).getcategory());
 				System.out.print("] ");
 			}
-			System.out.println("\n1~ 추가 상품 카테고리 :");
-			int sel = scan.nextInt()+1;
-			int ck = -1;
-			for(int i=0; i<this.category.size(); i++) {
-				if(this.category.get(sel).equals(category.get(i).getcategory()))
-					ck=i;
-			}
-			if(ck!=-1) {
+			System.out.println("\n0~ 추가 상품 카테고리 :");
+			int sel = scan.nextInt();
+//			int ck = -1;
+//			for(int i=0; i<this.category.size(); i++) {
+//				if(this.category.get(sel).getcategory().equals(category.get(i).getcategory()))
+//					ck=i;
+//			}
+//			if(ck!=-1) {
 				System.out.println("추가 상품 이름 :");
 				String name = scan.next();
 				System.out.println("추가 상품 가격 :");
@@ -78,14 +78,14 @@ public class ItemManager {
 						check=true;
 				}
 				if(!check) {
-					Item newItem = new Item(name, price, ck);
+					Item newItem = new Item(name, price, sel);
 					this.itemList.add(newItem);
 					System.out.println("==등록완료==");
 				}
 				else {
 					System.out.println("===이미 같은상품 등록===");
 				}
-			}
+//			}
 		}	
 		else {
 			System.out.println("===등록된 카테고리가 없음===");
@@ -98,25 +98,74 @@ public class ItemManager {
 	// 수정은 그냥 지우고 다시 만들면됨
 	// 아이템 삭제
 	public void delItem() {
-		// 이기에 카테고리 미리 나열 후
-		System.out.println("추가 상품 카테고리 :");
-		int category = scan.nextInt();
-		System.out.println("추가 상품 이름 :");
-		int name = scan.nextInt();
+		// 카테고리 미리 나열 후
+		if(category.size() > 0) {
+			for(int i=0; i<category.size(); i++) {
+				System.out.println("\n");
+				System.out.print("["+i+". ");
+				System.out.print(category.get(i).getcategory());
+				System.out.print("] ");
+			}
+			System.out.println("\n0~ 삭제 상품 카테고리 :");
+			int sel = scan.nextInt();
+			int ck = -1;
+			for(int i=0; i<this.category.size(); i++) {
+				if(this.category.get(sel).getcategory().equals(category.get(i).getcategory()))
+					ck=i;
+			}
+			if(ck!=-1) {
+				//카테고리의 삭제상품 목록
+				for(int i=0; i<category.size(); i++) {
+					if(category.get(ck).getcategory().equals(category.get(i).getcategory())) {
+						for(int j=0; j<itemList.size(); j++) {
+							System.out.println(j+") ["+itemList.get(i).getName()+"] "+"["+itemList.get(i).getPrice()+"]");
+						}						
+					}
+
+					System.out.println("======");
+				}
+				
+				System.out.println("0~ 삭제 상품 :");
+				int name = scan.nextInt();
+				
+				System.out.println(itemList.get(name).getName());
+				System.out.println("위 상품을 삭제? 1)Y / 2)N :");
+				int yOn = scan.nextInt();
+				
+				if(yOn == 1) {
+					itemList.remove(name);
+					System.out.println("==삭제됨==");
+				}
+				else if(yOn == 2) {
+					System.out.println("==최소됨==");
+				}
+			}
+		}	
+		else {
+			System.out.println("===등록된 카테고리가 없음===");
+		}	
 	}
 	
-	// 아이템 프린트
-	public void itemPrint(int cas) {
-		int n = 0;
+	// 관리자 아이템 프린트
+	public void itemPrint() {
 		for(int i=0; i<category.size(); i++) {
-			System.out.print("["+category.get(i).getcategory()+"] ");
-			for(int j=0; j<itemList.size(); j++) {
+			System.out.println("["+category.get(i).getcategory()+"]======");
+			for(int j=0; j<itemList.get(i)get(j); j++) {
 				System.out.println("["+itemList.get(i).getName()+"] "+"["+itemList.get(i).getPrice()+"]");
 			}
 			System.out.println("======");
 		}
 	}
 	
+	// 위에서 카테고리 걸렀으니 그 카테 그 상품만 나오게
+	public void categoryInItem(int sel) {
+		for(int i=0; i<this.category.size(); i++) {
+			if(this.category.get(sel).getcategory().equals(category.get(i).getcategory()))
+				for(int j=0; j<itemList.size(); j++) {
+					System.out.println(j+") ["+itemList.get(i).getName()+"] "+"["+itemList.get(i).getPrice()+"]");
+				}
+		}
+	}
 	//로그인된 카트에 상품담기
 	public void pickitem(String userID, int cas, int its) {
 		int n=0;
@@ -169,7 +218,7 @@ public class ItemManager {
 	
 	// 카트넣은 상품보기
 	public void lookCart() {
-
+		
 			
 	}
 	//카트상품 수량추가

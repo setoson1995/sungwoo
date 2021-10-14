@@ -59,8 +59,9 @@ public class Shop {
 			System.out.println("-1)뒤로가기");
 			int cas = scan.nextInt();
 			if(cas == -1) {break;}
+			
 			System.out.println("[상품]");
-			im.itemPrint(cas);
+			im.itemPrint();
 			int its = scan.nextInt();
 //			im.pickitem(um.userList.get(um.userlog).id, cas, its);
 			
@@ -91,7 +92,7 @@ public class Shop {
 	void managerMenu() {
 		boolean run = true;
 		while(run) {
-			System.out.println("1)유저관리\n2)아이템관리\n3)카테고리관리/n4)뒤로가기");
+			System.out.println("1)유저관리\n2)아이템관리\n3)카테고리관리\n4)뒤로가기");
 			int sel = scan.nextInt();
 		
 			if(sel == 1) {userSetting();}
@@ -118,7 +119,7 @@ public class Shop {
 			System.out.println("1)전체아이템보기\n2)추가\n3)삭제\n4)뒤로가기");
 			int sel = scan.nextInt();
 			
-			if(sel == 1) {um.userPrint();}
+			if(sel == 1) {im.itemPrint();}
 			else if(sel == 2) {im.addItem();}
 			else if(sel == 3) {im.delItem();}
 			else if(sel == 4) {managerMenu();}
