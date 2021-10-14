@@ -56,25 +56,36 @@ public class ItemManager {
 			for(int i=0; i<category.size(); i++) {
 				System.out.println("\n");
 				System.out.print("["+i+1+". ");
-				System.out.print(category.get(i).getCategory());
+				System.out.print(category.get(i).getcategory());
 				System.out.print("] ");
 			}
-			System.out.println("\n추가 상품 카테고리 :");
-			int category = scan.nextInt();
-			System.out.println("추가 상품 이름 :");
-			int name = scan.nextInt();
-			System.out.println("추가 상품 가격 :");
-			int price = scan.nextInt();
-			
-			boolean check  = false;
-			for(Item item : this.itemList) {
-				if(name.equals(item.getName()))
-					check = true;
+			System.out.println("\n1~ 추가 상품 카테고리 :");
+			int sel = scan.nextInt()+1;
+			int ck = -1;
+			for(int i=0; i<this.category.size(); i++) {
+				if(this.category.get(sel).equals(category.get(i).getcategory()))
+					ck=i;
 			}
-			if(!check) {
+			if(ck!=-1) {
+				System.out.println("추가 상품 이름 :");
+				String name = scan.next();
+				System.out.println("추가 상품 가격 :");
+				int price = scan.nextInt();
 				
+				boolean check  = false;
+				for(int i=0; i<itemList.size(); i++) {
+					if(name.equals(itemList.get(i).getName()))
+						check=true;
+				}
+				if(!check) {
+					Item newItem = new Item(name, price, ck);
+					this.itemList.add(newItem);
+					System.out.println("==등록완료==");
+				}
+				else {
+					System.out.println("===이미 같은상품 등록===");
+				}
 			}
-			
 		}	
 		else {
 			System.out.println("===등록된 카테고리가 없음===");
@@ -97,12 +108,12 @@ public class ItemManager {
 	// 아이템 프린트
 	public void itemPrint(int cas) {
 		int n = 0;
-		for(int i=0; i<itemList.size(); i++) {
-			if(category.get(cas).equals(itemList.get(i).category)) {
-				System.out.println(n+")");
-				itemList.get(i).print();
-				n++;
+		for(int i=0; i<category.size(); i++) {
+			System.out.print("["+category.get(i).getcategory()+"] ");
+			for(int j=0; j<itemList.size(); j++) {
+				System.out.println("["+itemList.get(i).getName()+"] "+"["+itemList.get(i).getPrice()+"]");
 			}
+			System.out.println("======");
 		}
 	}
 	
@@ -129,7 +140,7 @@ public class ItemManager {
 		String name = scan.next();
 		boolean check = false;
 		for(Category category : this.category) {
-			if(name.equals(category.getCategory()))
+			if(name.equals(category.getcategory()))
 				check = true;
 		}
 		if(!check) {
@@ -152,7 +163,7 @@ public class ItemManager {
 	//카테고리 프린트
 	public void categoryPrint() {
 		for(int i=0; i<category.size(); i++) {
-			System.out.println("["+i+"] "+category.get(i).getCategory());
+			System.out.println("["+i+"] "+category.get(i).getcategory());
 		}
 	}	
 	

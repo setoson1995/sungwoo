@@ -1,14 +1,17 @@
 package models;
 
 public class Category {
-	
-	private String category;
+	public String category;
 	
 	public Category(String category) {
 		this.category = category;
 	}
-	public String getCategory() {
-		return this.category; 
+	
+	public String getcategory() {
+		return this.category;
 	}
-
+	
+	public void print() {
+		System.out.println("["+category+"]");
+	}
 }
