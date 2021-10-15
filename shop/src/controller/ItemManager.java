@@ -156,14 +156,17 @@ public class ItemManager {
 	
 	// (로그인)위에서 카테고리 걸렀으니 그 카테 그 상품만 나오게
 	public void categoryInItem(int cas) {
-		for(int i=0; i<this.category.size(); i++) {
-			if(this.category.get(cas).getcategory().equals(category.get(i).getcategory()))
+		String name = this.category.get(cas).getcategory();
+		
+//		for(int i=0; i<this.category.size(); i++) {
+//			if(this.category.get(cas).getcategory().equals(category.get(i).getcategory()))
+				
 				for(int j=0; j<itemList.size(); j++) {
-					if(category.get(cas).getcategory().equals(itemList.get(i).getCategoryNumber())) {
-					System.out.println(j+1+") ["+itemList.get(i).getName()+"] "+"["+itemList.get(i).getPrice()+"]");
+					if(name.equals(itemList.get(j).getCategoryNumber())) {
+					System.out.println(j+1+") ["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
 				}
-			}	
-			break;
+//			}	
+//			break;
 		}
 	}
 	//로그인된 카트에 상품담기
