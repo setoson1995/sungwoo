@@ -222,6 +222,10 @@ public class ItemManager {
 		for(int i=0; i<category.size(); i++) {
 			System.out.println("["+(i+1)+"] "+category.get(i).getcategory());
 		}
+		// 커밋용
+		for(int i=0; i<category.size(); i++) {
+			System.out.println("["+(i+1)+"] "+category.get(i).getcategory());
+		}
 	}	
 	
 	// 카트넣은 상품보기
