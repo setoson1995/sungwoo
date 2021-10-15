@@ -21,7 +21,7 @@ public class Shop {
 				System.out.println();
 			}
 			System.out.println("===SHOP===");
-			System.out.println("1)가입\n2)로그인" + "\n99)관리자\n0)종료");
+			System.out.println("1)가입\n2)로그인" + "\n11)관리자\n0)종료");
 			int sel = scan.nextInt();
 			if(sel ==1) {um.join();}
 			else if(sel == 2) {
@@ -31,7 +31,7 @@ public class Shop {
 					loginMenu();
 				}	
 			}
-			else if(sel == 99) {managerMenu();}
+			else if(sel == 11) {managerMenu();}
 			else if(sel == 0) {run = false;}
 		}
 	}
@@ -56,13 +56,13 @@ public class Shop {
 		boolean run = true;
 		while(run) {
 			im.categoryPrint();
-			System.out.println("-1)뒤로가기");
+			System.out.println("11)뒤로가기");
 			int cas = scan.nextInt();
-			if(cas == -1) {break;}
+			if(cas == 11) {break;}
 			
 			System.out.println("[상품]");
-			im.itemPrint();
-			int its = scan.nextInt();
+			im.categoryInItem(cas);
+			int its = scan.nextInt()-1;
 //			im.pickitem(um.userList.get(um.userlog).id, cas, its);
 			
 		}
