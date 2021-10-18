@@ -55,7 +55,10 @@ public class Shop {
 				int sel = scan.nextInt();
 				if(sel == 1) {shopMenu();}
 				else if(sel == 2) {cartMenu();}
-				else if(sel == 3) {um.closeAccount();}
+				else if(sel == 3) {
+					um.closeAccount();
+					break;
+				}
 				else if(sel == 4) {
 					um.logOut();
 					mainMenu();
@@ -87,13 +90,9 @@ public class Shop {
 			System.out.println("1)상품 수량추가\n2)상품빼기\n3)결제\n4)뒤로가기");
 			int sel = scan.nextInt();
 			if(sel ==1 || sel ==2) im.myCart(sel);
+			else if(sel == 3) {im.mypay();}
 			else if(sel == 4) {loginMenu();}
 		}
-	}
-	
-	//결제
-	void pay() {
-		im.pay();
 	}
 	
 	

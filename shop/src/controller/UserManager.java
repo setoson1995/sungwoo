@@ -41,8 +41,14 @@ public class UserManager {
 	public void closeAccount() {
 		System.out.println("진짜 탈퇴할꺼? <1)네, 2)아니오>");
 		int sel = scan.nextInt();
-		if(sel == 1) {}
-		else if (sel == 2) {}
+		if(sel == 1) {
+			userList.remove(userlog);
+			userlog=-1;
+			System.out.println("==탈퇴됨==");
+
+			
+		}
+		else if (sel == 2) {System.out.println("==취소==");}
 	}
 	
 	//관리자 삭제

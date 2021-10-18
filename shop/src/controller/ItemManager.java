@@ -152,7 +152,6 @@ public class ItemManager {
 	public void pickitem(int its) {
 		Cart newCartList = new Cart(um.userlog, itemList.get(its).getName(), 1);
 		this.cartList.add(newCartList);
-		
 //		String userID, int itemName, int itemCount
 	}
 	
@@ -169,15 +168,19 @@ public class ItemManager {
 	// (로그인)카트
 	public void myCart(int sel) {
 		//카트상품 수량추가
+		
 		if(sel == 1) {
 			System.out.println("상품 이름 입력 :");
-			String set = scan.next();
+			String name = scan.next();
 			for(int i=0; i<cartList.size(); i++) {
 				if(um.userlog == cartList.get(i).getCartuserId()) {
-					if(set.equals(cartList.get(i).getCartitemName())) {
+					if(name.equals(cartList.get(i).getCartitemName())) {
+						System.out.println(cartList.get(i).getCartItemCount());
 							System.out.println("변경 갯수 :");
 							int n = scan.nextInt();
-							cartList.set(cartList.get(i).getCartItemCount(), n);
+							
+							cartList.get(i).setItemCount(n);
+							System.out.println(cartList.get(i).getCartItemCount());
 					}
 				}
 			}
@@ -201,16 +204,20 @@ public class ItemManager {
 	}
 	
 	// 결제
-	public void pay() {
+	public void mypay() {
 		System.out.println("== Pay ==");
 		int total = 0;
 		int multiply = 0;
+		int after = -1;
 		for(int i=0; i<cartList.size(); i++) {
 			if(um.userlog == cartList.get(i).getCartuserId()) {
 				multiply = cartList.get(i).getCartItemCount();
-				if(cartList.get(i).getCartitemName().equals(itemList.get(i).getName())) {
-					total += itemList.get(i).getPrice()*multiply;
-				}
+				after = i;
+				for(int j=0; j<itemList.size(); j++) {
+					if(cartList.get(i).getCartitemName().equals(itemList.get(j).getName())) {
+						total += itemList.get(j).getPrice() * multiply;
+					}
+				}	
 			}
 		}
 		System.out.println("total :"+total);
@@ -219,6 +226,8 @@ public class ItemManager {
 		if(me >= total) {
 			me-=total;
 			System.out.println("잔돈 :"+me);
+			cartList.remove(after);
+			System.out.println("==구매감사==");
 		}
 		else {
 			System.out.println("===금액부족===");

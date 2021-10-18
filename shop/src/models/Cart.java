@@ -10,6 +10,7 @@ public class  Cart{
 		this.itemName = itemName;
 		this.itemCount = itemCount;
 	}
+	// alt + shift + s 를 하면 get set 메서드를 만들수 있다.
 	
 	public int getCartuserId() {
 		return this.userId;
@@ -20,9 +21,22 @@ public class  Cart{
 	public int getCartItemCount() {
 		return this.itemCount;
 	}
+
 	
+	
+	public int getItemCount() {
+		return itemCount;
+	}
+
+
+	public void setItemCount(int itemCount) {
+		this.itemCount = itemCount;
+	}
+
+
 	public void cartPrint() {
 		System.out.println("["+userId+"] "+"상품 :"+itemName+" "+itemCount);
 	}
+	
 	
 }
