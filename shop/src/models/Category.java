@@ -15,4 +15,5 @@ public class Category {
 	public void print() {
 		System.out.println("["+category+"]");
 	}
+	
 }

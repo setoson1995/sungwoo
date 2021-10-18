@@ -6,48 +6,33 @@ import java.util.Vector;
 import models.Cart;
 import models.Category;
 import models.Item;
+import models.Shop;
 
 
 public class ItemManager {
-	Scanner scan = new Scanner(System.in);
+	public Scanner scan = new Scanner(System.in);
 	
+	UserManager um = new UserManager();
 	
 	
 	public Vector<Category> category = new Vector<>();
-	Vector <Item> itemList = new Vector<>();
-	Vector<Cart> cartList = new Vector<>();
+	public Vector <Item> itemList = new Vector<>();
+	public Vector<Cart> cartList = new Vector<>();
 	
-	
-	void cartPrint() {
-		init();
-//		for(Cart i : cartList)
-//			System.out.println(i);
-	}
-	
-	// 기본 추가된 상품들
-	void init() {
-		
-		Category category = new Category("과자");
-		this.category.add(category);
-		category = new Category("생선");
-		this.category.add(category);
-		category = new Category("육류");
-		this.category.add(category);
-		category = new Category("음료수");
-		this.category.add(category);
-//		Item temp = new Item("새우깡", 1000, category.get(0));
-//		itemList.add(temp);
-//		temp = new Item("고등어", 2000, category.get(1));
-//		itemList.add(temp);
-//		temp = new Item("칸쵸", 3600, category.get(0));
-//		itemList.add(temp);
-//		temp = new Item("소고기", 6500, category.get(2));
-//		itemList.add(temp);
-//		temp = new Item("콜라", 500, category.get(3));
-//		itemList.add(temp);
-//		temp = new Item("새우", 1800, category.get(1));
-//		itemList.add(temp);
-	}
+//		// 기본 추가된 상품들
+//	Cart newCartList = new Cart(um.userlog, itemList.get(its).getName(), 1);
+//	this.cartList.add(newCartList);
+//	    this.category.add(new category("과자"));
+//		this.category.add(new category("생선"));
+//		this.category.add(new category("육류"));
+//		this.category.add(new category("음료수"));
+//		this.itemList.add(new itemList("새우깡", 1000, "과자"));
+//		this.itemList.add(new itemList("고등어", 2000, "생선"));
+//		this.itemList.add(new itemList("칸쵸", 3600, "과자"));
+//		this.itemList.add(new itemList("소고기", 6500, "육류"));
+//		this.itemList.add(new itemList("콜라", 500, "음료수"));
+//		this.itemList.add(new itemList("새우", 1800, "생선"));
+
 	
 	// 아이템 추가
 	public void addItem() {
@@ -144,47 +129,101 @@ public class ItemManager {
 	// 관리자 아이템 프린트
 	public void itemPrint() {
 		for(int i=0; i<category.size(); i++) {
-			System.out.println("["+category.get(i).getcategory()+"]======");
+			System.out.println(category.get(i).getcategory()+"=====");
 			for(int j=0; j<itemList.size(); j++) {
-				if(category.get(i).getcategory().equals(itemList.get(i).getCategoryNumber())) {
-				System.out.println("["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
+				if(category.get(i).getcategory().equals(itemList.get(j).getCategoryNumber())) {
+				System.out.println(j+1+") ["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
 				}
 			}
-			System.out.println("======");
 		}
 	}
 	
 	// (로그인)위에서 카테고리 걸렀으니 그 카테 그 상품만 나오게
 	public void categoryInItem(int cas) {
 		String name = this.category.get(cas).getcategory();
-		
-//		for(int i=0; i<this.category.size(); i++) {
-//			if(this.category.get(cas).getcategory().equals(category.get(i).getcategory()))
-				
-				for(int j=0; j<itemList.size(); j++) {
-					if(name.equals(itemList.get(j).getCategoryNumber())) {
-					System.out.println(j+1+") ["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
-				}
-//			}	
-//			break;
+						
+			for(int j=0; j<itemList.size(); j++) {
+				if(name.equals(itemList.get(j).getCategoryNumber())) {
+				System.out.println(j+1+") ["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
+			}
 		}
 	}
 	//로그인된 카트에 상품담기
-	public void pickitem(String userID, int cas, int its) {
-		int n=0;
-		Cart temp = new Cart();
-		temp.userId = userID;
-		for(int i=0; i<itemList.size(); i++) {
-			if(category.get(cas).equals(itemList.get(i).category)) {
-				if(its == n) {
-					temp.itemName = itemList.get(i).name;
-				}
-				n++;
-			}
-		}
-		cartList.add(temp);
+	public void pickitem(int its) {
+		Cart newCartList = new Cart(um.userlog, itemList.get(its).getName(), 1);
+		this.cartList.add(newCartList);
+		
+//		String userID, int itemName, int itemCount
 	}
 	
+	
+	// (로그인)카트넣은 상품보기
+	public void lookCart() {
+		for(int i=0; i<cartList.size(); i++) { //같은 유저로그찾기
+			if(um.userlog == cartList.get(i).getCartuserId()) {
+				System.out.println(cartList.get(i).getCartitemName()+" : "+cartList.get(i).getCartItemCount()+"개\n");
+			}
+		
+		}	
+	}
+	// (로그인)카트
+	public void myCart(int sel) {
+		//카트상품 수량추가
+		if(sel == 1) {
+			System.out.println("상품 이름 입력 :");
+			String set = scan.next();
+			for(int i=0; i<cartList.size(); i++) {
+				if(um.userlog == cartList.get(i).getCartuserId()) {
+					if(set.equals(cartList.get(i).getCartitemName())) {
+							System.out.println("변경 갯수 :");
+							int n = scan.nextInt();
+							cartList.set(cartList.get(i).getCartItemCount(), n);
+					}
+				}
+			}
+		}
+
+		//카트상품 빼기
+		else if(sel ==2) {	
+			System.out.println("상품 이름 입력 :");
+			String del = scan.next();
+			for(int i=0; i<cartList.size(); i++) {
+				if(um.userlog == cartList.get(i).getCartuserId()) {
+					if(del.equals(cartList.get(i).getCartitemName())) {
+							cartList.remove(i);
+							System.out.println("==카트에서 삭제됨==");
+							break;
+					}
+				}
+			}
+		}
+	
+	}
+	
+	// 결제
+	public void pay() {
+		System.out.println("== Pay ==");
+		int total = 0;
+		int multiply = 0;
+		for(int i=0; i<cartList.size(); i++) {
+			if(um.userlog == cartList.get(i).getCartuserId()) {
+				multiply = cartList.get(i).getCartItemCount();
+				if(cartList.get(i).getCartitemName().equals(itemList.get(i).getName())) {
+					total += itemList.get(i).getPrice()*multiply;
+				}
+			}
+		}
+		System.out.println("total :"+total);
+		System.out.println("결제금액 입력 :");
+		int me = scan.nextInt();
+		if(me >= total) {
+			me-=total;
+			System.out.println("잔돈 :"+me);
+		}
+		else {
+			System.out.println("===금액부족===");
+		}
+	}
 	
 	//카테고리 추가
 	public void addCategory() {
@@ -222,25 +261,6 @@ public class ItemManager {
 		for(int i=0; i<category.size(); i++) {
 			System.out.println("["+(i+1)+"] "+category.get(i).getcategory());
 		}
-		// 커밋용
-		for(int i=0; i<category.size(); i++) {
-			System.out.println("["+(i+1)+"] "+category.get(i).getcategory());
-		}
 	}	
-	
-	// 카트넣은 상품보기
-	public void lookCart() {
-		
-			
-	}
-	//카트상품 수량추가
-	public void growItemN() {
 
-		
-	}
-	//카트상품 빼기
-	public void delCartItem() {
-
-		
-	}
 }

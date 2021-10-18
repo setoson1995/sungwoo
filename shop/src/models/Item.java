@@ -4,13 +4,13 @@ public class Item {
 
 	public String name;
 	public int price;
-	public String categoryNumber;
+	public String categoryName;
 
 	
-	public Item(String name, int price, String categoryNumber){
+	public Item(String name, int price, String categoryName){
 		this.name = name;
 		this.price = price;
-		this.categoryNumber = categoryNumber;
+		this.categoryName = categoryName;
 	}
 	
 	
@@ -21,7 +21,7 @@ public class Item {
 		return this.price;
 	}
 	public String getCategoryNumber() {
-		return this.categoryNumber;
+		return this.categoryName;
 	}
 	public void print() {
 		System.out.println(" ["+name+"] "+" ["+price+"]");
