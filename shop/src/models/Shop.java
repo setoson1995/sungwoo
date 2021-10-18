@@ -100,13 +100,14 @@ public class Shop {
 	void managerMenu() {
 		boolean run = true;
 		while(run) {
-			System.out.println("1)유저관리\n2)아이템관리\n3)카테고리관리\n4)뒤로가기");
+			System.out.println("1)유저관리\n2)아이템관리\n3)카테고리관리\n4)모든미결제카트확인\n5)뒤로가기");
 			int sel = scan.nextInt();
 		
 			if(sel == 1) {userSetting();}
 			else if(sel == 2) {itemSetting();}
 			else if(sel == 3) {categorySetting();}
-			else if(sel == 4) {mainMenu();}
+			else if(sel == 4) {im.allCartPrint();}
+			else if(sel == 5) {mainMenu();}
 		}
 	}
 	void userSetting() {
@@ -115,7 +116,13 @@ public class Shop {
 			System.out.println("1)전체유저보기\n2)추가\n3)삭제\n4)뒤로가기");
 			int sel = scan.nextInt();
 			
-			if(sel == 1) {System.out.println(um.userList);}
+			if(sel == 1) {
+				for(int i=0; i<um.userList.size(); i++) {
+					System.out.print("["+i+"] "+um.userList.get(i).getId());
+					System.out.print(" / "+um.userList.get(i).getPw());
+					System.out.println();
+				}
+			}
 			else if(sel == 2) {um.join();}
 			else if(sel == 3) {um.delAccount();}
 			else if(sel == 4) {managerMenu();}

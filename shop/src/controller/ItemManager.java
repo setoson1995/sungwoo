@@ -120,6 +120,9 @@ public class ItemManager {
 					System.out.println("==최소됨==");
 				}
 			}
+			else {
+				System.out.println("===이상한거 눌러서 오류남===");
+			}
 		}	
 		else {
 			System.out.println("===등록된 카테고리가 없음===");
@@ -141,29 +144,37 @@ public class ItemManager {
 	// (로그인)위에서 카테고리 걸렀으니 그 카테 그 상품만 나오게
 	public void categoryInItem(int cas) {
 		String name = this.category.get(cas).getcategory();
-						
+			
+			int check = -1;
 			for(int j=0; j<itemList.size(); j++) {
 				if(name.equals(itemList.get(j).getCategoryNumber())) {
-				System.out.println(j+1+") ["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
+					check += j;
+					System.out.println(j+1+") ["+itemList.get(j).getName()+"] "+"["+itemList.get(j).getPrice()+"]");
 			}
+			if(check == -1) {System.out.println("===준비된 카테고리 또는 상품 없음===");}
 		}
 	}
 	//로그인된 카트에 상품담기
 	public void pickitem(int its) {
-		Cart newCartList = new Cart(um.userlog, itemList.get(its).getName(), 1);
-		this.cartList.add(newCartList);
+		if(its > itemList.size() && its < 0) {System.out.println("===입력정보오류===");}
+		else {
+			Cart newCartList = new Cart(um.userlog, itemList.get(its).getName(), 1);
+			this.cartList.add(newCartList);
+		}	
 //		String userID, int itemName, int itemCount
 	}
 	
 	
 	// (로그인)카트넣은 상품보기
 	public void lookCart() {
+		int check = -1;
 		for(int i=0; i<cartList.size(); i++) { //같은 유저로그찾기
 			if(um.userlog == cartList.get(i).getCartuserId()) {
+				check += i;
 				System.out.println(cartList.get(i).getCartitemName()+" : "+cartList.get(i).getCartItemCount()+"개\n");
 			}
-		
 		}	
+		if(check == -1) {System.out.println("==넣은상품없음==");}
 	}
 	// (로그인)카트
 	public void myCart(int sel) {
@@ -179,10 +190,14 @@ public class ItemManager {
 							System.out.println("변경 갯수 :");
 							int n = scan.nextInt();
 							
-							cartList.get(i).setItemCount(n);
-							System.out.println(cartList.get(i).getCartItemCount());
+							if(n > 1) {
+								cartList.get(i).setItemCount(n);
+								System.out.println(cartList.get(i).getCartItemCount());
+							}	
+							else {System.out.println("===입력갯수오류===");}
 					}
 				}
+				else {System.out.println("===같은이름상품이 카트에 없음===");}
 			}
 		}
 
@@ -190,15 +205,19 @@ public class ItemManager {
 		else if(sel ==2) {	
 			System.out.println("상품 이름 입력 :");
 			String del = scan.next();
+			int check = -1;
 			for(int i=0; i<cartList.size(); i++) {
 				if(um.userlog == cartList.get(i).getCartuserId()) {
 					if(del.equals(cartList.get(i).getCartitemName())) {
+							check += i;
 							cartList.remove(i);
 							System.out.println("==카트에서 삭제됨==");
 							break;
 					}
 				}
 			}
+			if(check == -1) {System.out.println("===상품없음 또는 입력오류===");}
+
 		}
 	
 	}
@@ -220,17 +239,36 @@ public class ItemManager {
 				}	
 			}
 		}
-		System.out.println("total :"+total);
-		System.out.println("결제금액 입력 :");
-		int me = scan.nextInt();
-		if(me >= total) {
-			me-=total;
-			System.out.println("잔돈 :"+me);
-			cartList.remove(after);
-			System.out.println("==구매감사==");
-		}
+		if(total == 0) {System.out.println("==결제상품없음==");}
 		else {
-			System.out.println("===금액부족===");
+			System.out.println("total :"+total);
+			System.out.println("결제금액 입력 :");
+			int me = scan.nextInt();
+			if(me >= total) {
+				for(int i=0; i<cartList.size(); i++) {
+					if(um.userlog == cartList.get(i).getCartuserId()) {
+						cartList.remove(i);
+					}
+				}
+				System.out.println("잔돈 :"+me);
+				cartList.remove(after);
+				System.out.println("==구매감사==");
+			}
+			else {
+				System.out.println("===금액부족===");
+			}
+		}	
+	}
+	
+	//관리자 모든카트프린트
+	public void allCartPrint() {
+		System.out.println("==ALL CART LIST===");
+		for(int i=0; i<um.userList.size(); i++) {
+			for(int j=0; j<cartList.size(); j++) {
+				if(i == cartList.get(j).getCartuserId()) {
+				System.out.println("ID ("+cartList.get(j).getCartuserId()+") "+"("+cartList.get(j).getCartitemName()+") "+"("+cartList.get(j).getCartItemCount()+" 개)");
+				}
+			}
 		}
 	}
 	

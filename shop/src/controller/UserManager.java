@@ -49,11 +49,30 @@ public class UserManager {
 			
 		}
 		else if (sel == 2) {System.out.println("==취소==");}
+		else {
+			System.out.println("===이상한거 눌러서 오류남===");
+		}
 	}
 	
 	//관리자 삭제
 	public void delAccount() {
+		System.out.println("del ID :");
+		String delid = scan.next();
+		int check = -1;
+		for(int i=0; i<userList.size(); i++) {
+			if(delid.equals(userList.get(i).getId())) {
+				check = i;
+				break;
+			}
+		}
 		
+		if(check == -1) {
+			System.out.println("===삭제대상 다시확인===");
+		}
+		else {
+			userList.remove(check);
+			System.out.println("==삭제됨==");
+		}
 	}
 	
 	// 로그인
@@ -68,7 +87,7 @@ public class UserManager {
 				break;
 			}
 		}
-		return false;	
+		return false;
 	}
 	
 	// 로그아웃
