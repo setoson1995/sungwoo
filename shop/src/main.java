@@ -7,6 +7,9 @@ public class main {
 		shop.mainMenu();
 		
 		
+		// alt + shift + s 를 하면 get set 메서드를 만들수 있다.
+		// (주의) 만약 set안에 리턴을 담았다면 처음 받은 값을 준다
+		
 		// public  /  private 처리 안된상태이고, 어떻게 나눠야하는지 모르겠다
 		// 다른 클레스에 당겨와서 사용하려면 public이여야하는데 그럼 private는 어디다해야하는가?
 		
