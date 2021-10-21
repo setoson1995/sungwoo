@@ -24,7 +24,7 @@ public class Main {
 					+ "[4) Save]  [5) Load]  [6) Close]");
 			int mainSel = scan.nextInt();
 
-			if (mainSel == 1) {inventory.invenMain();}
+			if (mainSel == 1) {inventory.inventoryMain();}
 			else if (mainSel == 2) {store.storeMain();} 
 			else if (mainSel == 3) {guild.guildMain();}
 			else if (mainSel == 4) { }

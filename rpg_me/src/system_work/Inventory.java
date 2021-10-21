@@ -4,7 +4,7 @@ import gameManager.Main;
 
 public class Inventory {
 	
-	public void invenMain() {
+	public void inventoryMain() {
 		while(true) {
 			System.out.println("=== Inventory Menu ===");
 			System.out.println("[1) 착용]  [2) 판매]  [3) 뒤로가기]");
