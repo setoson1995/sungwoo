@@ -1,22 +1,19 @@
-package Controller;
+package model;
 
-public class Battle implements Damageable{
+public class Player implements Damageable{
 	boolean isdead;
 	String Name;
-	final int MAX_HP;
-	int HP;
-	int Attack;
-	int Defence;
-	int Pos;
+	final int MAX_HP = 100;
+	int HP = MAX_HP;
+	int Attack = 5;
+	int Defence = 5;
+	int Pos = 1;
 	
 	
-	public Battle(String name, int maxhp, int hp, int attack, int defence, int pos){
+	public Player(String name){
 		this.Name = name;
-		this.MAX_HP = maxhp;
-		this.HP = hp;
-		this.Attack = attack;
-		this.Defence = defence;
-		this.Pos = pos;
+		
+		
 	}
 	public String getName() {
 		return Name;
@@ -54,16 +51,20 @@ public class Battle implements Damageable{
 	public void setPos(int pos) {
 		Pos = pos;
 	}
+	void print() {
+		System.out.println(this.Name+"[HP : "+this.HP+"]\n"
+				+ "[공격력 : "+this.Attack+"] [방어력 : "+this.Defence+"]");
+	}
 	@Override
 	public void damage(int att) {
 		// TODO Auto-generated method stub
 		this.HP -= att;
 		if(this.HP <= 0) {
 			isdead = true;
-			System.out.println("== "+this.Name+"을 으깨버렸다 ==");
+			System.out.println("== "+this.Name+"은 결국 탈출에 실패하고 좀비밥 (좁밥)이 되었다 ==");
 		}
 		else {
-			System.out.println("== "+att+"의 데미지를 줬다 ==");
+			System.out.println("== ("+att+"의 데미지) 너무 아프다 ==");
 		}
 	}
 }

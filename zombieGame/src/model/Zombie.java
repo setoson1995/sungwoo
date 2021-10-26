@@ -1,24 +1,24 @@
-package Character;
+package model;
 
-public class Player {
-	String Player;
+public class Zombie {
+	String Name;
 	int HP;
 	int Attack;
 	int Defence;
 	int Pos;
 	
-	public Player(String name, int hp, int attack, int defence, int pos){
-		this.Player = name;
+	public Zombie(String name, int hp, int attack, int defence, int pos){
+		this.Name = name;
 		this.HP = hp;
 		this.Attack = attack;
-		this.Defence = defence; 
+		this.Defence = defence;
+		this.Pos = pos;
 	}
-	
-	public String getPlayer() {
-		return Player;
+	public String getName() {
+		return Name;
 	}
-	public void setPlayer(String player) {
-		Player = player;
+	public void setName(String name) {
+		this.Name = name;
 	}
 	public int getHP() {
 		return HP;
@@ -45,5 +45,4 @@ public class Player {
 		Pos = pos;
 	}
 	
-
 }
