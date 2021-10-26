@@ -2,6 +2,6 @@ package model;
 
 
 public interface Damageable {
-	void damage(int att);
-
+	void damageP(int att);
+	void damageZ(int att);
 }

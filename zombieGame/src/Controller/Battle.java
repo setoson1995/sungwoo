@@ -1,6 +1,8 @@
 package Controller;
 
-public class Battle implements Damageable{
+import model.Damageable;
+
+public class Battle {
 	boolean isdead;
 	String Name;
 	final int MAX_HP;
@@ -53,17 +55,5 @@ public class Battle implements Damageable{
 	}
 	public void setPos(int pos) {
 		Pos = pos;
-	}
-	@Override
-	public void damage(int att) {
-		// TODO Auto-generated method stub
-		this.HP -= att;
-		if(this.HP <= 0) {
-			isdead = true;
-			System.out.println("== "+this.Name+"을 으깨버렸다 ==");
-		}
-		else {
-			System.out.println("== "+att+"의 데미지를 줬다 ==");
-		}
 	}
 }
