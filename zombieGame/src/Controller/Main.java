@@ -178,7 +178,9 @@ public class Main implements Damageable{
 			System.out.println("=========================");
 			System.out.println(battle.get(0).getName()+"[HP : "+battle.get(0).getHp()+"]\n"
 					+ "[공격력 : "+battle.get(0).getAttack()+"] [방어력 : "+battle.get(0).getDefence()+"");
-			
+			if(battle.get(0).getName().equals("라스보스 좀비")) {
+				System.out.println("");
+			}
 			System.out.println("========== V S ==========");
 			
 			System.out.println(player.get(0).getName()+"[HP : "+player.get(0).getHp()+"]\n"
