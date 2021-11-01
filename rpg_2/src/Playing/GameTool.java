@@ -5,17 +5,20 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class GameTool {
+public class GameTool{
 	public static Scanner scan = new Scanner(System.in);
+	public static Random ran = new Random();
 	public static String nextStage = "";
-	String curStage = "";
+	String curStage = ""; // 이게 게임 종료??
 	
-	Map<String, Stage> mapList = new HashMap<>();
+	
+	
+	Map<String, Stage> mapList = new HashMap<String, Stage>();
 	
 	GameTool(){
-		mapList.put("TITLE", null);
-		mapList.put("TITLE", null);
-		mapList.put("TITLE", null);
+		mapList.put("TITLE", new Title());
+		mapList.put("BATTLE", new Battle());
+		mapList.put("LOBBY", new Lobby());
 		nextStage = "TITLE";
 	}
 	
@@ -37,4 +40,6 @@ public class GameTool {
 		else return true;
 		
 	}
+
+
 }

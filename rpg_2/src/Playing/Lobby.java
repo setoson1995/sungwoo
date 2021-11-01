@@ -11,8 +11,13 @@ public class Lobby extends Stage {
 		if(sel == 1) {
 			GameTool.nextStage = "BATTLE";
 		}
-		else if(sel == 2) {}
-		else {}
+		else if(sel == 2) {
+			GameTool.nextStage = "";
+			
+		}
+		else {
+			GameTool.nextStage = "";
+		}
 		return false;
 	}
 	
