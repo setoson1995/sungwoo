@@ -1,6 +1,6 @@
 package models;
 
-public class Player {
+public class Player extends Unit{
 	String name;
 	final int MAX_HP = 100;
 	int HP = 100;

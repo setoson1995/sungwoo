@@ -1,6 +1,5 @@
 package controller;
-// 시작 18 : 07
-// 종료 
+ 
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
